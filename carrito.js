@@ -3,7 +3,7 @@
   "use strict";
 
   const CLAVE = "qqueso-carrito";
-  const PASO_KG = 0.25; // se vende de a 250 g
+  const PASO_KG = 0.5; // se vende de a 250 g
   const TODAS = "Todas";
 
   const $ = (id) => document.getElementById(id);
