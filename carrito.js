@@ -1,9 +1,8 @@
-/* q'Queso · Lógica del carrito (no hace falta tocar este archivo) */
 (function () {
   "use strict";
 
   const CLAVE = "qqueso-carrito";
-  const PASO_KG = 0.5; // se vende de a 250 g
+  const PASO_KG = 0.5; // se vende de a 250
   const TODAS = "Todas";
 
   const $ = (id) => document.getElementById(id);
@@ -19,11 +18,10 @@
   const marcaDe = (p) => p.marca || "Otras";
 
   let carrito = cargar();
-  let filtro = "Todos";     // categoría
-  let marcaSel = TODAS;     // marca
+  let filtro = "Todos"; 
+  let marcaSel = TODAS;    
   let busqueda = "";
 
-  /* ---------- Persistencia (el pedido sobrevive a recargar la página) ---------- */
   function cargar() {
     try {
       const guardado = JSON.parse(localStorage.getItem(CLAVE)) || {};
@@ -38,7 +36,6 @@
     try { localStorage.setItem(CLAVE, JSON.stringify(carrito)); } catch (e) { /* modo privado */ }
   }
 
-  /* ---------- Formato ---------- */
   const paso = (p) => (p.unidad === "kg" ? PASO_KG : 1);
 
   function textoCantidad(p, cant) {
@@ -51,7 +48,6 @@
   const subtotal = (p, cant) => p.precio * cant;
   const nombreCompleto = (p) => (p.marca ? `${p.nombre} (${p.marca})` : p.nombre);
 
-  /* ---------- Cambios ---------- */
   function cambiar(id, delta) {
     const p = porId.get(id);
     if (!p || p.disponible === false) return;
@@ -61,7 +57,6 @@
     renderTodo();
   }
 
-  /* ---------- Filtros ---------- */
   function renderFiltros() {
     const cats = ["Todos", ...new Set(PRODUCTOS.map((p) => p.categoria))];
     $("filtros").innerHTML = cats.map((c) =>
@@ -69,7 +64,6 @@
     ).join("");
   }
 
-  // El selector de marcas muestra solo las marcas de la categoría elegida
   function renderMarcas() {
     const delaCat = PRODUCTOS.filter((p) => filtro === "Todos" || p.categoria === filtro);
     const cuenta = new Map();
@@ -95,7 +89,6 @@
     );
   }
 
-  /* ---------- Render: catálogo ---------- */
   function itemHTML(p, mostrarMarca) {
     const cant = carrito[p.id] || 0;
     const agotado = p.disponible === false;
@@ -138,9 +131,6 @@
       return;
     }
 
-    // Con una marca elegida: lista simple (cada producto muestra su marca arriba). Si no, se agrupa para leer más fácil:
-    //   - categoría puntual → por marca (orden alfabético)
-    //   - todas las categorías → por categoría
     if (marcaSel !== TODAS) {
       $("lista").innerHTML = lista.map((p) => itemHTML(p, true)).join("");
       return;
@@ -162,7 +152,6 @@
     `).join("");
   }
 
-  /* ---------- Render: carrito ---------- */
   function totales() {
     let total = 0, cantidad = 0;
     for (const id in carrito) { total += subtotal(porId.get(id), carrito[id]); cantidad++; }
@@ -194,7 +183,6 @@
     $("total-fila").hidden = !ids.length;
     $("datos").hidden = !ids.length;
 
-    // Barra inferior (celular)
     $("barra").hidden = !ids.length;
     $("barra-cant").textContent = cantidad === 1 ? "1 producto" : `${cantidad} productos`;
     $("barra-total").textContent = moneda.format(total);
@@ -202,7 +190,6 @@
 
   function renderTodo() { renderCatalogo(); renderCarrito(); }
 
-  /* ---------- Mensaje de WhatsApp ---------- */
   function armarMensaje() {
     const nombre = $("nombre").value.trim();
     const nota = $("nota").value.trim();
@@ -231,7 +218,6 @@
     window.open(url, "_blank", "noopener");
   }
 
-  /* ---------- Eventos ---------- */
   function limpiarFiltros() {
     filtro = "Todos"; marcaSel = TODAS; busqueda = "";
     $("buscar").value = "";

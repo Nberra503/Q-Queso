@@ -18,7 +18,7 @@ cada producto:
    marca        → la marca. Si no tiene, borrá el campo
    categoria    → "Quesos", "Fiambres", "Lácteos", "Pastas", "Snacks" SE PUEDE CREAR OTRA PQ LO PROGRAMÉ
    precio       → número, sin signo y sin puntos (ej: 12500)
-   unidad       → "kg" (se vende por peso de a 250 g) o "unidad"
+   unidad       → "kg" se vende por peso de a 250 g (ahora 500 g) o "unidad"
    nuevo        → se pone true para mostrar la etiqueta "Nuevo" 
    disponible   → se pone false para mostrarlo como "Sin stock", para poner para vender solo dejás true
 */

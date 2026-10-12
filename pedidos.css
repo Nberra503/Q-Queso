@@ -1,5 +1,3 @@
-/* q'Queso · Estilos de la página de pedidos (usa las variables de styles.css) */
-
 .top { background: var(--amarillo); }
 .top-fila {
   display: flex;
@@ -29,7 +27,6 @@ h1 {
 }
 .aviso { color: var(--gris); margin: 0 0 1.75rem; max-width: 54ch; }
 
-/* Filtros: barra que queda fija arriba en pantallas grandes */
 .herramientas {
   background: var(--papel);
   padding-block: .75rem;
@@ -84,7 +81,6 @@ h1 {
 .filtro:hover { background: var(--linea); }
 .filtro[aria-pressed="true"] { background: var(--negro); color: var(--amarillo); }
 
-/* Productos */
 .producto-item {
   display: flex;
   justify-content: space-between;
@@ -140,7 +136,6 @@ h1 {
 .cantidad button:hover { background: var(--amarillo); }
 .cantidad span { min-width: 4.5rem; text-align: center; font-weight: 500; }
 
-/* Carrito */
 .carrito {
   background: #fff;
   border: 1.5px solid var(--negro);
@@ -149,7 +144,6 @@ h1 {
   position: sticky;
   top: 1rem;
   scroll-margin-top: 1rem;
-  /* Nunca más alto que la pantalla: si hay muchos productos, scrollea la lista */
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 2rem);
@@ -222,7 +216,6 @@ h1 {
 }
 .vaciar:hover { color: var(--negro); }
 
-/* Barra inferior fija en celular */
 .barra {
   position: fixed;
   left: 1rem;
@@ -252,7 +245,6 @@ h1 {
   .producto-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
 
-/* Etiqueta "Nuevo" y cartel de categoría */
 .nuevo {
   display: inline-block;
   margin-left: .6rem;
